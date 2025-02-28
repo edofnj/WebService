@@ -5,7 +5,7 @@
 // Generated on: 2025.01.20 at 06:46:16 PM CET 
 //
 
-package app.model.xml;
+package MenegazziCotroneo.Ordini.model;
 
 import jakarta.xml.bind.annotation.XmlRegistry;
 

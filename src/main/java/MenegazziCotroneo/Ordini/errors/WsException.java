@@ -1,4 +1,4 @@
-package app.errors;
+package MenegazziCotroneo.Ordini.errors;
 
 public class WsException extends Exception {
 
