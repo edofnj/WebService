@@ -148,7 +148,7 @@ public class WsClient {
      * @return La risposta del web service.
      */
     public String deleteOrder(int id) throws Exception {
-        URI uri = new URI(this.baseUrl + "?id=" + id);
+        URI uri = new URI(this.baseUrl+ "?id=" + id);
         HttpRequest req = HttpRequest.newBuilder()
             .uri(uri)
             .DELETE()
@@ -166,7 +166,7 @@ public class WsClient {
      * Recupera tutti gli utenti dal web service.
      */
     public Utenti getUtenti() throws Exception {
-        URI uri = new URI(this.baseUrl + "/utenti.php");
+        URI uri = new URI(this.baseUrl);
         HttpRequest req = HttpRequest.newBuilder().uri(uri).GET().build();
         HttpResponse<String> res = this.client.send(req, BodyHandlers.ofString());
 
@@ -191,7 +191,6 @@ public class WsClient {
             throw new WsException("Errore HTTP: " + res.statusCode());
 
         String body = (String) res.body();
-        System.out.println(body);
         return XmlUtils.unmarshal(Utente.class, body);
     }
 
@@ -203,7 +202,7 @@ public class WsClient {
      * @return La risposta del web service.
      */
     public String createUtente(String nome, String email) throws Exception {
-        URI uri = new URI(this.baseUrl + "/utenti.php");
+        URI uri = new URI(this.baseUrl);
         String xmlRequest = String.format(
             "<utente><nome>%s</nome><email>%s</email></utente>",
             nome, email
@@ -232,7 +231,7 @@ public class WsClient {
      * @return La risposta del web service.
      */
     public String updateUtente(int id, String nome, String email) throws Exception {
-        URI uri = new URI(this.baseUrl + "/utenti.php");
+        URI uri = new URI(this.baseUrl);
         StringBuilder xmlRequest = new StringBuilder("<utente><id>" + id + "</id>");
         
         if (nome != null) {
@@ -266,7 +265,7 @@ public class WsClient {
      * @return La risposta del web service.
      */
     public String deleteUtente(int id) throws Exception {
-        URI uri = new URI(this.baseUrl + "/utenti.php?utente_id=" + id);
+        URI uri = new URI(this.baseUrl + "?id=" + id);
         HttpRequest req = HttpRequest.newBuilder()
             .uri(uri)
             .DELETE()

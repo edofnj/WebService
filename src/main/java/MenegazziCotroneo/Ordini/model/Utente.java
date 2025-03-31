@@ -7,14 +7,13 @@ import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "utente", propOrder = {
+@XmlType(name = "Utente", propOrder = {
     "nome",
     "email"
 })
 public class Utente {
 	
-	@XmlAttribute(required = true)
-    protected Integer id;
+	
 
     @XmlElement(required = true)
     protected String nome;
@@ -22,6 +21,8 @@ public class Utente {
     @XmlElement(required = true)
     protected String email;
 
+    @XmlAttribute(name = "id")
+    protected Integer id;
     
 
     /**
