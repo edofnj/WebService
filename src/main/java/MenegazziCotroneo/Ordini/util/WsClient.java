@@ -140,7 +140,6 @@ public class WsClient {
 
         return res.body();
     }
-
     /**
      * Elimina un ordine.
      * 
@@ -190,8 +189,20 @@ public class WsClient {
         if (res.statusCode() != 200)
             throw new WsException("Errore HTTP: " + res.statusCode());
 
-        String body = (String) res.body();
-        return XmlUtils.unmarshal(Utente.class, body);
+        String body = res.body();
+        
+        // Prova a unmarshallare come Utenti e poi estrai il primo utente
+        try {
+            Utenti utenti = XmlUtils.unmarshal(Utenti.class, body);
+            if (utenti.getUtente() != null && !utenti.getUtente().isEmpty()) {
+                return utenti.getUtente().get(0);
+            } else {
+                throw new WsException("Nessun utente trovato con ID: " + utenteId);
+            }
+        } catch (Exception e) {
+            // Se fallisce, prova con il singolo Utente
+            return XmlUtils.unmarshal(Utente.class, body);
+        }
     }
 
     /**

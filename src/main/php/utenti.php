@@ -191,7 +191,7 @@
             echo "<error>ID utente mancante</error>";
         }
     }
-    elseif ($_SERVER['REQUEST_METHOD'] == "Delete") {
+    elseif ($_SERVER['REQUEST_METHOD'] == "DELETE") {
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
 
